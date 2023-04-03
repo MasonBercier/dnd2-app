@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { AppContext } from '../context/AppContext'
 
 export default function CharacterSheet() {
   const [name, setName] = useState('Alphons')

@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AppContext } from '../context/AppContext'
 
 
-export default function ClassSelect() {
+export default function ClassSelect(props) {
+  const {setMyChar} = useContext(AppContext)
   const [userClass, setUserClass] = useState('')
   const [allClasses, setAllClasses] = useState([]);
   //     ^ogState
@@ -60,6 +62,7 @@ export default function ClassSelect() {
               }
            })}
         </div>
+        <button onClick={() => setMyChar(userClass)}>Save Stats</button>
     </>
   );
 }
