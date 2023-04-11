@@ -1,0 +1,87 @@
+
+body {
+    background-image: url(https://i.pinimg.com/736x/93/bd/8e/93bd8e25dcc6b59e8003850d7bcf52c5.jpg);
+    background-size:cover
+    /* background-repeat: no-repeat; */
+}
+
+* {
+    font-family: 'Press Start 2P', cursive;
+    
+}
+
+.ClassButtons {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.SaveClassButton {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.RaceButtons {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.SaveRaceButton {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.SaveAlignButton {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+.SignInButton {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    justify-content: center;
+}
+
+
+.ClassTitle {
+    color: azure;
+    text-align: center;
+    padding: 20px;
+}
+.RaceTitle {
+    color: azure;
+    text-align: center;
+    padding: 20px;
+}
+.AlignmentTitle {
+    color: azure;
+    text-align: center;
+    padding: 20px;
+}
+
+.AlignmentImg {
+    display: flex;
+    justify-content: center;    
+    padding: 20px;
+}
+
+.Rolls {
+    display: flex;
+    justify-content: center;    
+    padding: 20px;
+}
+
+.AlignSelect{
+    margin: auto;
+    width: 50%;
+}

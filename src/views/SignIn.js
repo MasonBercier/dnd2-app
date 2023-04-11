@@ -12,7 +12,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth } from '../firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import {signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
+
+
 
 
 
@@ -22,6 +25,7 @@ export default function SignIn() {
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,23 +35,23 @@ export default function SignIn() {
       password: data.get('password'),
     });
 
+    
     signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user)
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log({
-      error: errorCode,
-      message: errorMessage
-    })
-  });
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      navigate('/')
+    }) 
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log({
+        error: errorCode,
+        message: errorMessage
+      })
+    });
   };
-
+  
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -88,7 +92,9 @@ export default function SignIn() {
               id="password"
               onChange={(event) => {setPassword(event.target.value)}}
             />
+            <div className='SignInButton'>
             <Button
+              class="nes-btn is-primary"
               type="submit"
               fullWidth
               variant="contained"
@@ -96,6 +102,7 @@ export default function SignIn() {
             >
               Sign In
             </Button>
+            </div>
             <Grid container>
               <Grid item>
                 <Link href="/signup" variant="body2">

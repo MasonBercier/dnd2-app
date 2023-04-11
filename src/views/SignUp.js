@@ -21,7 +21,6 @@ import { doc, setDoc } from "firebase/firestore";
 const theme = createTheme();
 
 export default function SignUp() {
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')

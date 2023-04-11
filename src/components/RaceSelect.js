@@ -17,23 +17,22 @@ export default function RaceSelect() {
 
   return (
     <>
-    <div>
-    <button onClick={() => setUserRace('Dwarf')}>Dwarf</button>
-      <button onClick={() => setUserRace('Elf')}>Elf</button>
-      <button onClick={() => setUserRace('Halfling')}>Halfling</button>
-      <button onClick={() => setUserRace('Human')}>Human</button>
-      <button onClick={() => setUserRace('Dragonborn')}>Dragonborn</button>
-      <button onClick={() => setUserRace('Gnome')}>Gnome</button>
-      <button onClick={() => setUserRace('Half-Elf')}>Half-Elf</button>
-      <button onClick={() => setUserRace('Half-Orc')}>Half-Orc</button>
-      <button onClick={() => setUserRace('Tiefling')}>Tiefling</button>
-      <h3>{userRace}</h3>
-      </div>
+     <h1 className='RaceTitle'>Choose your race</h1>
+    <div className="RaceButtons" data-columns="4" >
+      {allRaces.map((item, index) => {
+          return (
+          <div key={index} >
+            <button type="button" class="nes-btn is-primary" onClick={() => setUserRace(item.name)}>{item.name}</button>
+          </div>
+          )
+        })}
+    </div>
       <div>
       {allRaces.map((item, index) => {
         if (userRace === item.name) {
           return (
-          <div key={index}>
+          <div key={index} class="nes-container is-dark with-title is-centered">
+            <p class="title">{userRace}</p>
             <p>{item.desc}</p>
             <p>{item.asi_desc}</p>
             <p>{item.age}</p>
@@ -48,6 +47,9 @@ export default function RaceSelect() {
           }
       })}
     </div>
+      <div className="SaveRaceButton">
+        <button class="nes-btn is-success">Save Race!</button>
+      </div>
     </>
   )
 }

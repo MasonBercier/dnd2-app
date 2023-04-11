@@ -10,13 +10,11 @@ export default function CreateCharacter() {
   const {setMyChar} = useContext(AppContext)
   return (
     <div>
-        <h1>Choose your class</h1>
+        <br></br>
         <ClassSelect />
         <br></br>
-        <h1>Choose your Race</h1>
         <RaceSelect />
         <br></br>
-        <h1>Choose your Alignment</h1>
         <AlignmentSelect />
         <RollStats />
 

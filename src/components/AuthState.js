@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
-import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -39,13 +38,13 @@ export default function AuthState() {
         { authUser ? 
         <>
         <div className='nav-item'>
-          <li>Hello, {authUser.displayName} !</li>
-        </div>
-        <div className='nav-item'>
-          <Button style={{ float : "right" }} variant="outlined" color="error" onClick={userSignOut}>Sign Out
-          </Button>
-        </div>
-        </> :  <li>Signed Out</li>}
+          <li>Hello, {authUser.displayName}!</li>
+          <li>
+            <button class="nes-btn is-error" onClick={userSignOut}>Sign Out
+            </button>
+          </li>
+        </div> 
+        </> :  <li>Please register or log in!</li>}
     </>
   )
 }

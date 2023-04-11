@@ -56,13 +56,13 @@ export default function RollStats() {
         }
     }
 
-    function spliceOutItem(index) {
-       myRolls.splice(index, index + 1)
+    function spliceItem(index) {
+       myRolls.splice(index, 1)
       }
       
   return (
-    <div>
-        <button onClick={rollDice}>Roll Stats!</button>
+    <div className='Rolls'>
+        <button button type="button" class="nes-btn is-success" onClick={rollDice}>Roll Stats!</button>
         <div className="AllRolls">
           {myRolls.map((item, index) => {
               return (
@@ -74,15 +74,18 @@ export default function RollStats() {
                         </tr>
                         <tr>
                         <td>{item}</td>
-                        <td><small>{index + 1}</small></td>
-                        <td><input type="button" value="Delete" onClick={spliceOutItem}/></td>
+                        <td><small>{index}</small></td>
+                        <button onClick={spliceItem} type="button" class="nes-btn is-error">Delete</button>
                         </tr>
                     </tbody>
                 </table>
                </div>
               )
            })}
-
+        
+        <div className="SaveRollsButton">
+            <button class="nes-btn is-success">Save Rolls!</button>
+        </div>
         </div>
     </div>
   )
