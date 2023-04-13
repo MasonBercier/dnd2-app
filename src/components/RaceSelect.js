@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-
+import { auth, db } from "../firebase";
+import { setDoc, doc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 
 export default function RaceSelect() {
   const [userRace, setUserRace] = useState('')
   const [allRaces, setAllRaces] = useState([]);
+
+  const navigate = useNavigate()
   
 
   useEffect(() => {
@@ -13,7 +17,12 @@ export default function RaceSelect() {
         .then(json => setAllRaces(json.results))
     }, [userRace]);
 
-
+    const addRaceToDb = () => {
+      setDoc(doc(db, "users", auth.currentUser.uid, "character", userRace), {
+        race: userRace
+      })
+      navigate('/alignmentselect')
+    }
 
   return (
     <>
@@ -48,7 +57,7 @@ export default function RaceSelect() {
       })}
     </div>
       <div className="SaveRaceButton">
-        <button class="nes-btn is-success">Save Race!</button>
+        <button class="nes-btn is-success" onClick={addRaceToDb}>Save Race!</button>
       </div>
     </>
   )

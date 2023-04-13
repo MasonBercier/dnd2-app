@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AppContext } from '../context/AppContext'
+import {doc, setDoc} from "firebase/firestore"
+import { db } from '../firebase'
 
 
 export default function ClassSelect(props) {
@@ -21,10 +23,6 @@ export default function ClassSelect(props) {
       <>
       <h1 className='ClassTitle'>Choose your class</h1>
         <div className="ClassSelect">
-          <header className="ClassSelect-header">
-          </header>
-          <br></br>
-          <br></br>
           <div className="ClassButtons" data-columns="4">
             {allClasses.map((item, index) => {
                 return (

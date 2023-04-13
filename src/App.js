@@ -6,6 +6,9 @@ import CharacterSheet from './views/CharacterSheet';
 import CreateCharacter from './views/CreateCharacter';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
+import NewClassSelect from './components/NewClassSelect';
+import RaceSelect from './components/RaceSelect';
+import AlignmentSelect from './components/AlignmentSelect';
 
 function App() {
 
@@ -19,6 +22,9 @@ function App() {
           <Route path='/charactersheet' element={<CharacterSheet/>}/>
           <Route path='/login' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/newclassselect' element={<NewClassSelect/>}/>
+          <Route path='/raceselect' element={<RaceSelect/>}/>
+          <Route path='/alignmentselect' element={<AlignmentSelect/>}/>
         </Routes>
       </div>
     </BrowserRouter>

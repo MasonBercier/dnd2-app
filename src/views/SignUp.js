@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -31,17 +29,17 @@ export default function SignUp() {
     const data = new FormData(event.currentTarget);
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-    const user = userCredential.user;
-    const data = {
-      uid: user.uid,
-      email: user.email,
-    }
-    updateProfile(user, {
-      displayName: name
-  })
-          
-          setUser(data);
+      .then((userCredential) => {
+      const user = userCredential.user;
+      updateProfile(user, {
+        displayName: name
+      })
+      const data = {
+        uid: user.uid,
+        email: user.email,
+      }
+      
+      setUser(data);
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -79,7 +77,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
