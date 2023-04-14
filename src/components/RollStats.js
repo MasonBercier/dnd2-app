@@ -13,7 +13,7 @@ export default function RollStats() {
         var rolled = []
         var newRolled = []
         var checker = true
-        if(myRolls.length < 5){
+        if(myRolls.length < 6){
             rolled.push((Math.floor(Math.random() * 6) + 1));
             rolled.push((Math.floor(Math.random() * 6) + 1));
             rolled.push((Math.floor(Math.random() * 6) + 1));
@@ -38,13 +38,10 @@ export default function RollStats() {
 
     const addRollsToDb = () => {
         setDoc(doc(db, "users", auth.currentUser.uid, "character", 'rolls'), {
-          rolls: myRolls
+          rolls: myRolls,
         })
         navigate('/newcharactersheet')
     }
-    // function spliceItem(index) {
-    //    myRolls.splice(index, 1)
-    //   }
       
   return (
     <div className='Rolls'>

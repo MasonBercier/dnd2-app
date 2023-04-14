@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './views/Home';
-import CharacterSheet from './views/CharacterSheet';
 import CreateCharacter from './views/CreateCharacter';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
@@ -11,6 +10,7 @@ import RaceSelect from './components/RaceSelect';
 import AlignmentSelect from './components/AlignmentSelect';
 import NewCharacterSheet from './views/NewCharacterSheet';
 import RollStats from './components/RollStats';
+import Combat from './views/Combat';
 
 function App() {
 
@@ -21,7 +21,6 @@ function App() {
         <Routes>
           <Route path='/' element={<Home/>}/>
           <Route path='/createcharacter' element={<CreateCharacter/>}/>
-          <Route path='/charactersheet' element={<CharacterSheet/>}/>
           <Route path='/login' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/classselect' element={<ClassSelect/>}/>
@@ -29,6 +28,8 @@ function App() {
           <Route path='/alignmentselect' element={<AlignmentSelect/>}/>
           <Route path='/rollstats' element={<RollStats/>}/>
           <Route path='/newcharactersheet' element={<NewCharacterSheet/>}/>
+          <Route path='/combat' element={<Combat/>}/>
+
         </Routes>
       </div>
     </BrowserRouter>

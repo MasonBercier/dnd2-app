@@ -116,27 +116,41 @@ body {
 }
 
 .CharacterStats {
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
     height: 100%;
     flex-basis: 100%;
-    flex: 0.2;
-    padding-top: 20px;
+    flex: 1;
+    padding: 30px;
 }
 
-.CharacterSkills {
+/* .CharacterSkills {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
-    padding-top: 20px;
-    
+    padding: 30px;
+} */
+
+.CharacterMods {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    padding: 30px;
 }
+
 .checkbox{
     background-color : #212529; 
-    width: 13%;
-
+    width: 25%;
   }
+
+.CharacterWeapons {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1.5;
+    padding: 30px;
+}

@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function AlignmentSelect() {
     const [alignment, setAlignment] = useState('');
-    console.log(alignment)
 
     const navigate = useNavigate()
 
@@ -50,14 +49,3 @@ export default function AlignmentSelect() {
     )
 }
     
-
-{/* <option value="Lawful Good">Lawful Good</option>
-<option value="Lawful Neutral">Lawful Neutral</option>
-<option value="Lawful Evil">Lawful Evil</option>
-<option value="Neutral Good">Neutral Good</option>
-<option value="Neutral Neutral">Neutral Neutral</option>
-<option value="Neutral Evil">Neutral Evil</option>
-<option value="Chaotic Good">Chaotic Good</option>
-<option value="Chaotic Neutral">Chaotic Neutral</option>
-<option value="Chaotic Evil">Chaotic Evil</option> */}
-
