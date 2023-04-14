@@ -1,11 +1,11 @@
 import { setDoc, doc } from "firebase/firestore";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import alignmentChart from '../images/Alignment-chart.jpg'
+import { useState } from "react";
 
 export default function AlignmentSelect() {
-    const [alignment, setAlignment] = React.useState('');
+    const [alignment, setAlignment] = useState('');
     console.log(alignment)
 
     const navigate = useNavigate()
@@ -15,7 +15,7 @@ export default function AlignmentSelect() {
     }
 
     const addAlignToDb = () => {
-        setDoc(doc(db, "users", auth.currentUser.uid, "character", alignment), {
+        setDoc(doc(db, "users", auth.currentUser.uid, "character", 'alignment'), {
             alignment: alignment
         })
         navigate('/rollstats')
@@ -25,7 +25,7 @@ export default function AlignmentSelect() {
         <>
         <h1 className='AlignmentTitle'>Choose your alignment</h1>
         <div className='AlignSelect'>
-        <div class="nes-select">
+        <div className="nes-select">
         <select required id="alignment_select" onChange={handleChange}>
             <option value="" disabled selected hidden>Select...</option>
             <option value="Lawful Good">Lawful Good</option>
@@ -44,7 +44,7 @@ export default function AlignmentSelect() {
             <img src={alignmentChart} alt="chart" />
         </div>
         <div className="SaveAlignButton">
-        <button class="nes-btn is-success" onClick={addAlignToDb}>Save Alignment!</button>
+        <button className="nes-btn is-success" onClick={addAlignToDb}>Save Alignment!</button>
         </div>
         </>
     )

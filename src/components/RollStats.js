@@ -1,33 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react'
-import diceImage1 from '../images/dice-six-faces-one.png'
-import diceImage2 from '../images/dice-six-faces-two.png'
-import diceImage3 from '../images/dice-six-faces-three.png'
-import diceImage4 from '../images/dice-six-faces-four.png'
-import diceImage5 from '../images/dice-six-faces-five.png'
-import diceImage6 from '../images/dice-six-faces-six.png'
-import { AppContext } from '../context/AppContext'
-
+import { setDoc, doc } from "firebase/firestore";
+import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import { auth, db } from "../firebase";
 
 
 export default function RollStats() {
-    // const {myRolls} = useContext(AppContext)
-    // const {setMyRolls} = useContext(AppContext)
     const [myRolls, setMyRolls] = useState([])
-    const [roll1, setRoll1] = useState()
-    const [roll2, setRoll2] = useState()
-    const [roll3, setRoll3] = useState()
-    const [roll4, setRoll4] = useState()
-    const [roll5, setRoll5] = useState()
 
-    let diceImages = [
-        diceImage1,
-        diceImage2,
-        diceImage3,
-        diceImage4,
-        diceImage5,
-        diceImage6,
-
-    ]
+    const navigate = useNavigate()
 
     function rollDice() {
         var rolled = []
@@ -40,11 +20,11 @@ export default function RollStats() {
             rolled.push((Math.floor(Math.random() * 6) + 1));
             rolled.push((Math.floor(Math.random() * 6) + 1));
             const min = Math.min(...rolled);
-            for(let i of rolled) {
-                newRolled.push(i)
+            for(let roll of rolled) {
+                newRolled.push(roll)
                 if(checker === true){
-                    if(min === i){
-                        newRolled.pop(i)
+                    if(min === roll){
+                        newRolled.pop(roll)
                         checker = false
                     }
                 }    
@@ -56,13 +36,19 @@ export default function RollStats() {
         }
     }
 
-    function spliceItem(index) {
-       myRolls.splice(index, 1)
-      }
+    const addRollsToDb = () => {
+        setDoc(doc(db, "users", auth.currentUser.uid, "character", 'rolls'), {
+          rolls: myRolls
+        })
+        navigate('/newcharactersheet')
+    }
+    // function spliceItem(index) {
+    //    myRolls.splice(index, 1)
+    //   }
       
   return (
     <div className='Rolls'>
-        <button button type="button" class="nes-btn is-success" onClick={rollDice}>Roll Stats!</button>
+        <button button type="button" className="nes-btn is-success" onClick={rollDice}>Roll Stats!</button>
         <div className="AllRolls">
           {myRolls.map((item, index) => {
               return (
@@ -74,17 +60,16 @@ export default function RollStats() {
                         </tr>
                         <tr>
                         <td>{item}</td>
-                        <td><small>{index}</small></td>
-                        <button onClick={spliceItem} type="button" class="nes-btn is-error">Delete</button>
+                        <td><small>{index + 1}</small></td>
+                        {/* <button onClick={spliceItem} type="button" className="nes-btn is-error">Delete</button> */}
                         </tr>
                     </tbody>
                 </table>
                </div>
               )
            })}
-        
         <div className="SaveRollsButton">
-            <button class="nes-btn is-success">Save Rolls!</button>
+            <button className="nes-btn is-success" onClick={addRollsToDb}>Save Rolls!</button>
         </div>
         </div>
     </div>

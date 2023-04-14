@@ -94,7 +94,7 @@ export default function SignIn() {
             />
             <div className='SignInButton'>
             <Button
-              class="nes-btn is-primary"
+              className="nes-btn is-primary"
               type="submit"
               fullWidth
               variant="contained"

@@ -41,7 +41,7 @@ export default function AuthState() {
         <div className='nav-item'>
           <li>Hello, {authUser.displayName}!</li>
           <li>
-            <button class="nes-btn is-error" onClick={userSignOut}>Sign Out
+            <button className="nes-btn is-error" onClick={userSignOut}>Sign Out
             </button>
           </li>
         </div> 

@@ -6,7 +6,8 @@ body {
 }
 
 * {
-    font-family: 'Press Start 2P', cursive;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 22px;
     
 }
 
@@ -85,3 +86,57 @@ body {
     margin: auto;
     width: 50%;
 }
+
+.ChracterInfo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.CharNameField{
+    flex-grow: 1;
+}
+.PlayNameField {
+    flex-grow: 1;
+}
+
+.CharClass {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.CharRace {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.CharAlign {
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.CharacterStats {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    flex-basis: 100%;
+    flex: 0.2;
+    padding-top: 20px;
+}
+
+.CharacterSkills {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    padding-top: 20px;
+    
+}
+.checkbox{
+    background-color : #212529; 
+    width: 13%;
+
+  }

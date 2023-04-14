@@ -18,7 +18,7 @@ export default function RaceSelect() {
     }, [userRace]);
 
     const addRaceToDb = () => {
-      setDoc(doc(db, "users", auth.currentUser.uid, "character", userRace), {
+      setDoc(doc(db, "users", auth.currentUser.uid, "character", 'race'), {
         race: userRace
       })
       navigate('/alignmentselect')
@@ -31,7 +31,7 @@ export default function RaceSelect() {
       {allRaces.map((item, index) => {
           return (
           <div key={index} >
-            <button type="button" class="nes-btn is-primary" onClick={() => setUserRace(item.name)}>{item.name}</button>
+            <button type="button" className="nes-btn is-primary" onClick={() => setUserRace(item.name)}>{item.name}</button>
           </div>
           )
         })}
@@ -40,8 +40,8 @@ export default function RaceSelect() {
       {allRaces.map((item, index) => {
         if (userRace === item.name) {
           return (
-          <div key={index} class="nes-container is-dark with-title is-centered">
-            <p class="title">{userRace}</p>
+          <div key={index} className="nes-container is-dark with-title is-centered">
+            <p className="title">{userRace}</p>
             <p>{item.desc}</p>
             <p>{item.asi_desc}</p>
             <p>{item.age}</p>
@@ -57,7 +57,7 @@ export default function RaceSelect() {
       })}
     </div>
       <div className="SaveRaceButton">
-        <button class="nes-btn is-success" onClick={addRaceToDb}>Save Race!</button>
+        <button className="nes-btn is-success" onClick={addRaceToDb}>Save Race!</button>
       </div>
     </>
   )

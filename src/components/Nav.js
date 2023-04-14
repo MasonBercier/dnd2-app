@@ -17,10 +17,10 @@ export default function Nav() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/charactersheet"> Character Sheet</Link>
+                <Link className="nav-link" to="/createcharacter">Create Character</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/createcharacter">Create Character</Link>
+                <Link className="nav-link" to="/newcharactersheet">New Character Sheet</Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
@@ -28,15 +28,7 @@ export default function Nav() {
               <li className="nav-item">
                 <Link className="nav-link" to="/signup">Register</Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/newclassselect">Class</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/raceselect">Race</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/alignmentselect">Alignment</Link>
-              </li>
+              
                 <li className="nav-item">
                   <Link className="nav-link" to="#">
                   <AuthState/>

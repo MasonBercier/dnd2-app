@@ -6,9 +6,11 @@ import CharacterSheet from './views/CharacterSheet';
 import CreateCharacter from './views/CreateCharacter';
 import SignIn from './views/SignIn';
 import SignUp from './views/SignUp';
-import NewClassSelect from './components/NewClassSelect';
+import ClassSelect from './components/ClassSelect';
 import RaceSelect from './components/RaceSelect';
 import AlignmentSelect from './components/AlignmentSelect';
+import NewCharacterSheet from './views/NewCharacterSheet';
+import RollStats from './components/RollStats';
 
 function App() {
 
@@ -22,9 +24,11 @@ function App() {
           <Route path='/charactersheet' element={<CharacterSheet/>}/>
           <Route path='/login' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
-          <Route path='/newclassselect' element={<NewClassSelect/>}/>
+          <Route path='/classselect' element={<ClassSelect/>}/>
           <Route path='/raceselect' element={<RaceSelect/>}/>
           <Route path='/alignmentselect' element={<AlignmentSelect/>}/>
+          <Route path='/rollstats' element={<RollStats/>}/>
+          <Route path='/newcharactersheet' element={<NewCharacterSheet/>}/>
         </Routes>
       </div>
     </BrowserRouter>
