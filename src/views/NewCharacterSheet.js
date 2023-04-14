@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 
 export default function NewCharacterSheet() {
+    const [tempClass, setTempClass] = useState('')
     const [allClasses, setAllClasses] = useState([]);
     const [rolls, setRolls] = useState([])
     const [stats, setStats] = useState([])
@@ -40,6 +41,10 @@ export default function NewCharacterSheet() {
         .then(json => setAllClasses(json.results))
       }, [stats.length]);
 
+      const handleChange = (event) => {
+        setTempClass(event.target.value)
+    }
+
 
     
 
@@ -62,8 +67,22 @@ export default function NewCharacterSheet() {
                 </div>)}})}
         </div>
         <div className="CharClass is-dark nes-container with-title is-centered ">
-            <p class="title">Class</p>
-             {stats.length > 0 ? <p>{stats[1]['class']}</p> : <p>no stats</p>}
+            <select required id="tempclass_select" onChange={handleChange}>
+                <option value="Barbarian">Barbarian</option>
+                <option value="Bard">Bard</option>
+                <option value="Cleric">Cleric</option>
+                <option value="Druid">Druid</option>
+                <option value="Fighter">Fighter</option>
+                <option value="Monk">Monk</option>
+                <option value="Paladin">Paladin</option>
+                <option value="Ranger">Ranger</option>
+                <option value="Rogue">Rogue</option> 
+                <option value="Sorcerer">Sorcerer</option>
+                <option value="Warlock">Warlock</option>
+                <option value="Wizard">Wizard</option>
+            </select>
+            {/* <p class="title">Class</p>
+             {stats.length > 0 ? <p>{stats[1]['class']}</p> : <p>no stats</p>} */}
         </div>
         <div className="CharRace is-dark nes-container with-title is-centered ">
             <p class="title">Race</p>
@@ -77,18 +96,18 @@ export default function NewCharacterSheet() {
     <div className='CharacterWeapons'>
             <div className='weapons'>
                     <div className="CharClass is-dark nes-container with-title is-centered "> 
-                        {stats.length > 0 && stats[1]['class'] == 'Barbarian' && <p>Weapon: Two-Handed Axe<br></br>Ability: Can enter Rage, doubling Strength for two turns {strMod} times per day.<br></br> <h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Bard' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Cleric' && <p>Weapon: Mace<br></br>Spell: Can cast siphon life from enemies x times per day, where x is your Wisdom Modifier + 1<br></br><h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Druid' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Fighter' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Monk' && <p>Unarmed: Hand to Hand Combat <br></br>Passive: Can attack twice each turn<br></br><h4 style={{color: 'red'}}>1-4 Damage x 2</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Paladin' && <p>Weapon: Halberd<br></br>Blessing: Can use divine sense, locating enemies and ensuring you go first in combat x times per day, where x is your Charisma Modifier + 1 <br></br><h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Ranger' && <p>Weapon: Shortbow<br></br>Can shoot two arrow at once x times per day, where x is your Dexterity Modifier <br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Rogue' && <p>Weapon: Dagger<br></br><h4 style={{color: 'red'}}>1-4 Damage</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Sorcerer' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Warlock' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && stats[1]['class'] == 'Wizard' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
+                        {stats.length > 0 && tempClass === 'Barbarian' && <p>Weapon: Two-Handed Axe<br></br>Ability: You can enter Rage, doubling Strength for two turns {strMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Bard' && <p>Weapon: Rapier<br></br>Ability: You can sing, hypnotizing enemies and causing them to miss {chaMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-8 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Cleric' && <p>Weapon: Mace<br></br>Spell: You can siphon life from enemies {wisMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Druid' && <p>Weapon: Quarterstaff<br></br>Ability: You can tap into nature and heal yourself {wisMod} time(s)<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Fighter' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
+                        {stats.length > 0 && tempClass === 'Monk' && <p>Unarmed: Hand to Hand Combat <br></br>Passive: Can attack twice each turn<br></br><h4 style={{color: 'red'}}>1-4 Damage x 2</h4></p> }
+                        {stats.length > 0 && tempClass === 'Paladin' && <p>Weapon: Halberd<br></br>Ability: Can use divine sense, locating enemies and ensuring you go first in combat {chaMod} time(s) per day.<br></br><h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Ranger' && <p>Weapon: Shortbow<br></br>Can shoot two arrow at once {dexMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Rogue' && <p>Weapon: Dagger<br></br><h4 style={{color: 'red'}}>1-4 Damage</h4></p> }
+                        {stats.length > 0 && tempClass === 'Sorcerer' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
+                        {stats.length > 0 && tempClass === 'Warlock' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
+                        {stats.length > 0 && tempClass === 'Wizard' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
                     </div>
             </div>
         </div>

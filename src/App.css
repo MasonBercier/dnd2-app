@@ -11,6 +11,10 @@ body {
     
 }
 
+#HomeIntro {
+    margin-top: 480px;
+}
+
 .ClassButtons {
     display: flex;
     flex-direction: row;
