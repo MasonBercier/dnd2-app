@@ -11,6 +11,7 @@ import AlignmentSelect from './components/AlignmentSelect';
 import NewCharacterSheet from './views/NewCharacterSheet';
 import RollStats from './components/RollStats';
 import Combat from './views/Combat';
+import NameSelect from './components/NameSelect';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/raceselect' element={<RaceSelect/>}/>
           <Route path='/alignmentselect' element={<AlignmentSelect/>}/>
           <Route path='/rollstats' element={<RollStats/>}/>
+          <Route path='/nameselect' element={<NameSelect/>}/>
           <Route path='/newcharactersheet' element={<NewCharacterSheet/>}/>
           <Route path='/combat' element={<Combat/>}/>
 

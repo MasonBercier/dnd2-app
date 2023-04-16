@@ -40,7 +40,7 @@ export default function RollStats() {
         setDoc(doc(db, "users", auth.currentUser.uid, "character", 'rolls'), {
           rolls: myRolls,
         })
-        navigate('/newcharactersheet')
+        navigate('/nameselect')
     }
       
   return (

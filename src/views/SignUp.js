@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth, db } from '../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { doc, setDoc } from "firebase/firestore"; 
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -23,6 +24,8 @@ export default function SignUp() {
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
     const [user, setUser] = useState({})
+
+    const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,10 +43,12 @@ export default function SignUp() {
       }
       
       setUser(data);
+      
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage)
         // ..
     });
   };
@@ -58,6 +63,7 @@ export default function SignUp() {
     }
     if (Object.keys(user).length > 0) {
       addUserToDb()
+      navigate('/login')
     }
   }, [user])
 

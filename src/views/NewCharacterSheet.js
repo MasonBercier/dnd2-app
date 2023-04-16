@@ -55,7 +55,7 @@ export default function NewCharacterSheet() {
         <div className="nes-field CharNameField">
             <div className="CharClass is-dark nes-container with-title is-centered ">
             <p class="title">Character Name</p>
-            {stats.length > 0 ? <p>{stats[1]['name']}</p> : <p>no stats</p>}
+                {stats.length > 0 ? <p>{stats[1]['characterName']}</p> : <p>no stats</p>}
             </div>
         </div>
         <div className="HitPoints" >
@@ -67,26 +67,12 @@ export default function NewCharacterSheet() {
                 </div>)}})}
         </div>
         <div className="CharClass is-dark nes-container with-title is-centered ">
-            <select required id="tempclass_select" onChange={handleChange}>
-                <option value="Barbarian">Barbarian</option>
-                <option value="Bard">Bard</option>
-                <option value="Cleric">Cleric</option>
-                <option value="Druid">Druid</option>
-                <option value="Fighter">Fighter</option>
-                <option value="Monk">Monk</option>
-                <option value="Paladin">Paladin</option>
-                <option value="Ranger">Ranger</option>
-                <option value="Rogue">Rogue</option> 
-                <option value="Sorcerer">Sorcerer</option>
-                <option value="Warlock">Warlock</option>
-                <option value="Wizard">Wizard</option>
-            </select>
-            {/* <p class="title">Class</p>
-             {stats.length > 0 ? <p>{stats[1]['class']}</p> : <p>no stats</p>} */}
+            <p class="title">Class</p>
+             {stats.length > 0 ? <p>{stats[2]['class']}</p> : <p>no stats</p>}
         </div>
         <div className="CharRace is-dark nes-container with-title is-centered ">
             <p class="title">Race</p>
-            {stats.length > 0 ? <p>{stats[2]['race']}</p> : <p>no stats</p>}
+            {stats.length > 0 ? <p>{stats[3]['race']}</p> : <p>no stats</p>}
         </div>
         <div className="CharAlign is-dark nes-container with-title is-centered ">
             <p class="title">Alignment</p>
@@ -96,18 +82,18 @@ export default function NewCharacterSheet() {
     <div className='CharacterWeapons'>
             <div className='weapons'>
                     <div className="CharClass is-dark nes-container with-title is-centered "> 
-                        {stats.length > 0 && tempClass === 'Barbarian' && <p>Weapon: Two-Handed Axe<br></br>Ability: You can enter Rage, doubling Strength for two turns {strMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Bard' && <p>Weapon: Rapier<br></br>Ability: You can sing, hypnotizing enemies and causing them to miss {chaMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-8 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Cleric' && <p>Weapon: Mace<br></br>Spell: You can siphon life from enemies {wisMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Druid' && <p>Weapon: Quarterstaff<br></br>Ability: You can tap into nature and heal yourself {wisMod} time(s)<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Fighter' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && tempClass === 'Monk' && <p>Unarmed: Hand to Hand Combat <br></br>Passive: Can attack twice each turn<br></br><h4 style={{color: 'red'}}>1-4 Damage x 2</h4></p> }
-                        {stats.length > 0 && tempClass === 'Paladin' && <p>Weapon: Halberd<br></br>Ability: Can use divine sense, locating enemies and ensuring you go first in combat {chaMod} time(s) per day.<br></br><h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Ranger' && <p>Weapon: Shortbow<br></br>Can shoot two arrow at once {dexMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Rogue' && <p>Weapon: Dagger<br></br><h4 style={{color: 'red'}}>1-4 Damage</h4></p> }
-                        {stats.length > 0 && tempClass === 'Sorcerer' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && tempClass === 'Warlock' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
-                        {stats.length > 0 && tempClass === 'Wizard' && <p>Not Sure<br></br> <h4 style={{color: 'red'}}>1Not Sure</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Barbarian' && <p>Weapon: Two-Handed Axe<br></br>Ability: You can enter Rage, doubling your damage for two turns {Number((strMod + 1))} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Bard' && <p>Weapon: Rapier<br></br>Ability: You can sing, hypnotizing enemies and causing them to miss thier attacks {chaMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-8 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Cleric' && <p>Weapon: Mace<br></br>Spell: You can siphon life from enemies, healing yourself {wisMod} time(s) per day. <br></br><h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Druid' && <p>Weapon: Quarterstaff<br></br>Ability: You can tap into nature and heal yourself {wisMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Fighter' && <p>Weapon: Greatsword<br></br>Passive: You have a 10% chance to dodge any attack. <br></br><h4 style={{color: 'red'}}>1-12 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Monk' && <p>Unarmed: Hand to Hand Combat <br></br>Passive: You attack twice each turn<br></br><h4 style={{color: 'red'}}>1-4 Damage x 2</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Paladin' && <p>Weapon: Halberd<br></br>Ability: You can use divine sense, locating enemies and ensuring you attack first in combat {chaMod} time(s) per day.<br></br><h4 style={{color: 'red'}}>1-10 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Ranger' && <p>Weapon: Shortbow<br></br>Ability: You can shoot two arrow at once {dexMod} time(s) per day.<br></br> <h4 style={{color: 'red'}}>1-6 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Rogue' && <p>Weapon: Dagger<br></br>Passive: You have a {Number(((dexMod * 3) + 15))}% chance to sneak attack before combat begins for x3 damage.<br></br><h4 style={{color: 'red'}}>1-4 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Sorcerer' && <p>Spell: Fireball<br></br> Passive: Your attacks have a 50% chance to inflict burning, dealing {Number((chaMod + 1))} damage each turn.<br></br> <h4 style={{color: 'red'}}>3 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Warlock' && <p>Weapon: Whip<br></br> Passive: You have a 25% chance to summon a familiar that deals {Number((chaMod + 1))} each time you defeat an enemy.<br></br> <h4 style={{color: 'red'}}>1-4 Damage</h4></p> }
+                        {stats.length > 0 && stats[2]['class'] === 'Wizard' && <p>Spell: Lightning Bolt<br></br> Passive: Your attacks have a {Number(((intMod * 3) + 15))}% chance to stun. <h4 style={{color: 'red'}}>3 Damage</h4></p> }
                     </div>
             </div>
         </div>
@@ -115,53 +101,53 @@ export default function NewCharacterSheet() {
         <div className='CharacterStats'>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Strength</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][0]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][0]}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Dexterity</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][1]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][1]}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Constitution</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][2]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][2]}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Intelligence</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][3]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][3]}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Wisdom</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][4]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][4]}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Charisma</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5]}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5]}</p> : <p>no stats</p>}</p>
             </div>
         </div>
         <div className='CharacterMods'>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Strength Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][0] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][0] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Dexterity Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][1] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][1] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Constitution Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][2] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][2] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Intelligence Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][3] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][3] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Wisdom Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][4] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][4] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
             <div className='nes-container is-dark with-title is-centered'>
                 <p class="title">Charisma Modifier</p>
-                <p>{stats.length > 0 ? <p>{stats[3]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[3]['rolls'][5] - 10) / 2)}</p> : <p>no stats</p>}</p>
+                <p>{stats.length > 0 ? <p>{stats[4]['rolls'][5] >= 10 ? '+' : ''} {Math.floor((stats[4]['rolls'][5] - 10) / 2)}</p> : <p>no stats</p>}</p>
             </div>
         </div>
         {/* <div className='CharacterSkills'>

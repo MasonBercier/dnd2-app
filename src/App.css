@@ -12,7 +12,11 @@ body {
 }
 
 #HomeIntro {
-    margin-top: 480px;
+    height:900px;
+    background-image: url('https://img-9gag-fun.9cache.com/photo/a8qMWeZ_700bwp.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0px, 10px;
 }
 
 .ClassButtons {
@@ -157,4 +161,21 @@ body {
     flex-basis: 100%;
     flex: 1.5;
     padding: 30px;
+}
+
+.PreviewInfo {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+.PreviewStats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+#name_field {
+    margin: 20px;
 }
