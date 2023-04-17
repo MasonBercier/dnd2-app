@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '@mui/material'
+import { Link } from 'react-router-dom';
 
 
 export default function AuthState() {
@@ -34,18 +34,46 @@ export default function AuthState() {
           });
     }
 
+    const titleCase = (str) => {
+      str = str.toLowerCase()
+               .split(' ')
+               .map(function(word) {
+        return word.replace(word[0], word[0].toUpperCase());
+
+        })
+    };
+
   return (
     <>
-        { authUser ? 
+      { authUser 
+        ? 
         <>
-        <div className='nav-item'>
-          <li>Hello, {authUser.displayName}!</li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/createcharacter">Create Character</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/newcharactersheet">New Character Sheet</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/combat">Combat</Link>
+          </li>
+          <li className="nav-item">
+          <Link className="nav-link" to="/combat">Hello, {authUser.displayName}!</Link>
+          </li>
           <li>
             <button className="nes-btn is-error" onClick={userSignOut}>Sign Out
             </button>
           </li>
-        </div> 
-        </> :  <li>Please register or log in!</li>}
+        </> 
+        :  
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">Login</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/signup">Register</Link>
+          </li>
+        </> }
     </>
   )
 }

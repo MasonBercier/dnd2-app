@@ -32,46 +32,46 @@ export default function Combat() {
     }
 
     const prepareCombat = () => {
-        setStrMod(Math.floor((stats[3]['rolls'][0] - 10) / 2))
-        setDexMod(Math.floor((stats[3]['rolls'][1] - 10) / 2))
-        setConMod(Math.floor((stats[3]['rolls'][2] - 10) / 2))
-        setIntMod(Math.floor((stats[3]['rolls'][3] - 10) / 2))
-        setWisMod(Math.floor((stats[3]['rolls'][4] - 10) / 2))
-        setChaMod(Math.floor((stats[3]['rolls'][5] - 10) / 2))
-        if (stats[1]['class'] === 'Barbarian') {
+        setStrMod(Math.floor((stats[4]['rolls'][0] - 10) / 2))
+        setDexMod(Math.floor((stats[4]['rolls'][1] - 10) / 2))
+        setConMod(Math.floor((stats[4]['rolls'][2] - 10) / 2))
+        setIntMod(Math.floor((stats[4]['rolls'][3] - 10) / 2))
+        setWisMod(Math.floor((stats[4]['rolls'][4] - 10) / 2))
+        setChaMod(Math.floor((stats[4]['rolls'][5] - 10) / 2))
+        if (stats[2]['class'] === 'Barbarian') {
             setHp(Number(12 + conMod))
             setDmg(Number(10 + strMod))
-        } else if (stats[1]['class'] === 'Bard') {
+        } else if (stats[2]['class'] === 'Bard') {
             setHp(Number(8 + conMod))
             setDmg(Number(8 + strMod))
-        } else if (stats[1]['class'] === 'Cleric') {
+        } else if (stats[2]['class'] === 'Cleric') {
             setHp(Number(8 + conMod))
             setDmg(Number(6 + strMod))
-        } else if (stats[1]['class'] === 'Druid') {
+        } else if (stats[2]['class'] === 'Druid') {
             setHp(Number(8 + conMod))
             setDmg(Number(6 + strMod))
-        } else if (stats[1]['class'] === 'Fighter') {
+        } else if (stats[2]['class'] === 'Fighter') {
             setHp(Number(10 + conMod))
             setDmg(Number(12 + strMod))
-        } else if (stats[1]['class'] === 'Monk') {
+        } else if (stats[2]['class'] === 'Monk') {
             setHp(Number(8 + conMod))
             setDmg(Number(4 + strMod))
-        } else if (stats[1]['class'] === 'Paladin') {
+        } else if (stats[2]['class'] === 'Paladin') {
             setHp(Number(10 + conMod))
             setDmg(Number(10 + strMod))
-        } else if (stats[1]['class'] === 'Ranger') {
+        } else if (stats[2]['class'] === 'Ranger') {
             setHp(Number(10 + conMod))
             setDmg(Number(6 + dexMod))
-        } else if (stats[1]['class'] === 'Rogue') {
+        } else if (stats[2]['class'] === 'Rogue') {
             setHp(Number(8 + conMod))
             setDmg(Number(4 + dexMod))
-        } else if (stats[1]['class'] === 'Sorcerer') {
+        } else if (stats[2]['class'] === 'Sorcerer') {
             setHp(Number(6 + conMod))
             setDmg(Number(3 + chaMod))
-        } else if (stats[1]['class'] === 'Warlock') {
+        } else if (stats[2]['class'] === 'Warlock') {
             setHp(Number(8 + conMod))
             setDmg(Number(4 + strMod))
-        } else if (stats[1]['class'] === 'Wizard') {
+        } else if (stats[2]['class'] === 'Wizard') {
             setHp(Number(6 + conMod))
             setDmg(Number(3 + intMod))
         } console.log(dmg, hp)
@@ -79,11 +79,13 @@ export default function Combat() {
 
     const enterCombat = () => {
         setInit(Math.floor(Math.random() * 20) + 1)
+        setEndmg(4)
+        setEnhp(9)
         
     }
 
     const fightCombat = () => {
-        if (stats[1]['class'] === 'Barbarian') {
+        if (stats[2]['class'] === 'Barbarian') {
             
         }
     }
@@ -91,19 +93,28 @@ export default function Combat() {
 
   return (
     <div>
-        <button onClick={currentStats}>check</button>
+        <button onClick={currentStats}>Check stats</button>
         <button onClick={prepareCombat}>Prepare for Combat!</button>
         <div class="nes-container with-title is-dark is-centered">
             <p class="title">- Character Stats -</p>
             <div class="lists">
                 <ul className="nes-list is-disc">
-                    <li>{hp > 0 ? <p>HP: {hp}</p> :<p>no stats</p>}</li>
-                    <li>{dmg > 0 ? <p>Damage: {dmg}</p> :<p>no stats</p>}</li>
+                    <li>{hp > 0 ? <p style={{color: 'green'}}>HP: {hp}</p> :<p>no stats</p>}</li>
+                    <li>{dmg > 0 ? <p style={{color: 'red'}}>Damage: {dmg}</p> :<p>no stats</p>}</li>
                 </ul>
             </div>
         </div>
-        
-        
+        <button onClick={enterCombat}>Enter Combat!</button>
+        <div class="nes-container with-title is-dark is-centered">
+            <p class="title">- Enemy Stats -</p>
+            <div class="lists">
+                <ul className="nes-list is-disc">
+                    <p>Skeleton:</p>
+                    <li>{enhp > 0 ? <p style={{color: 'green'}}>HP: {enhp}</p> :<p>HP: ???</p>}</li>
+                    <li>{endmg > 0 ? <p style={{color: 'red'}}>Damage: {endmg}</p> :<p>Damage: ???</p>}</li>
+                </ul>
+            </div>
+        </div>
     </div>
   )
 
