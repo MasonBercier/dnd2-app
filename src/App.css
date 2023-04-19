@@ -84,10 +84,38 @@ body {
     padding: 20px;
 }
 
-.Rolls {
+.RollLoad {
     display: flex;
-    justify-content: center;    
-    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.RollButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px; 
+}
+
+.AddBonusButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px;
+}
+
+.SaveRollsButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px;
+}
+
+.AllRolls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .AlignSelect{
@@ -99,13 +127,18 @@ body {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-top: 20px;
 }
 
 .CharNameField{
     flex-grow: 1;
 }
-.PlayNameField {
-    flex-grow: 1;
+
+.CharLoad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
 }
 
 .CharClass {
@@ -178,4 +211,18 @@ body {
 
 #name_field {
     margin: 20px;
+}
+
+.EnterCombat {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px;
+}
+
+.FightCombat {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px;
 }

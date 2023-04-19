@@ -48,36 +48,24 @@ export default function ClassSelect() {
               return (
                <div key={index} className="nes-container is-dark with-title is-centered">
                <p className="title">{userClass}</p>
-                <h3>Hit Dice: {item.hit_dice}</h3>
-                <p>{item.desc}</p>
+                {userClass === 'Barbarian' && <strong><p>A fierce warrior of primitive background who can enter a battle rage</p></strong>}
+                {userClass === 'Bard' && <strong><p>An inspiring magician whose power echoes the music of creation</p></strong>}
+                {userClass === 'Cleric' && <strong><p>A priestly champion who wields divine magic in service of a higher power</p></strong>}
+                {userClass === 'Druid' && <strong><p>A priest of the Old Faith, wielding the powers of nature — moonlight and plant growth, fire and lightning — and adopting animal forms</p></strong>}
+                {userClass === 'Fighter' && <strong><p>A master of martial combat, skilled with a variety of weapons and armor</p></strong>}
+                {userClass === 'Monk' && <strong><p>A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection</p></strong>}
+                {userClass === 'Paladin' && <strong><p>A holy warrior bound to a sacred oath</p></strong>}
+                {userClass === 'Ranger' && <strong><p>A warrior who uses martial prowess and nature magic to combat threats on the edges of civilization</p></strong>}
+                {userClass === 'Rogue' && <strong><p>A scoundrel who uses stealth and trickery to overcome obstacles and enemies</p></strong>}
+                {userClass === 'Sorcerer' && <strong><p>A spellcaster who draws on inherent magic from a gift or bloodline</p></strong>}
+                {userClass === 'Warlock' && <strong><p>A wielder of magic that is derived from a bargain with an extraplanar entity</p></strong>}
+                {userClass === 'Wizard' && <strong><p>A scholarly magic-user capable of manipulating the structures of reality</p></strong>}
+                <br></br>
                 <div className="nes-container is-dark with-title is-centered">
                 <p className="title">Hp at first level</p>
-                  <p>{item.hp_at_1st_level}</p>
-                </div>
-                <br></br>
-                <div className="nes-container is-dark with-title is-centered">
-                <p className="title">Hp after first level</p>
-                  <p>{item.hp_at_higher_levels}</p>
-                </div>
-                <br></br>
-                <div className="nes-container is-dark with-title is-centered">
-                <p className="title">Armor Proficiency</p>
-                  <p>{item.prof_armor}</p>
-                </div>
-                <br></br>
-                <div className="nes-container is-dark with-title is-centered">
-                <p className="title">Weapon Proficiency</p>
-                  <p>{item.prof_weapons}</p>
-                </div>
-                <br></br>
-                <div className="nes-container is-dark with-title is-centered">
-                <p className="title">Tool Proficiency</p>
-                  <p>{item.prof_tools}</p>
-                </div>
-                <br></br>
-                <div className="nes-container is-dark with-title is-centered">
-                <p className="title">Saving Throw Proficiency</p>
-                  <p>{item.prof_saving_throws}</p>
+                {item.hit_dice.length > 3 ? 
+                        <h3 style={{color: 'green'}}>{item.hit_dice.slice(-2)}</h3> 
+                        : <h3 style={{color: 'green'}}>{item.hit_dice.slice(-1)}</h3>}
                 </div>
                 <br></br>
                 <div className="nes-container is-dark with-title is-centered">

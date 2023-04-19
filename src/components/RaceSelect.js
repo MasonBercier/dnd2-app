@@ -47,8 +47,6 @@ export default function RaceSelect() {
             <p>{item.age}</p>
             <p>{item.alignment}</p>
             <p>{item.size}</p>
-            <p>{item.languages}</p>
-            <p>{item.vision}</p>
             <p>{item.traits}</p>
           </div>
           )} else {
