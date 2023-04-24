@@ -226,3 +226,10 @@ body {
     justify-content: center;   
     height: 100px;
 }
+
+.FindEnemy {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    height: 100px;
+}

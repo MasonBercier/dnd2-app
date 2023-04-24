@@ -1,23 +1,32 @@
 import { collection, onSnapshot } from 'firebase/firestore'
 import { auth, db } from "../firebase";
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
+import { Loop } from '@mui/icons-material';
 
 
 export default function Combat() {
+    const [enName, setEnName] = useState()
+    const [enSize, setEnSize] = useState()
+    const [enType, setEnType] = useState()
+    const [enemyList, setEnemyList] = useState([])
+    const [enemyStats, setEnemyStats] = useState()
     const [enhp, setEnhp] = useState()
     const [endmg, setEndmg] = useState()
     const [eninit, setEninit] = useState()
+
     const [hp, setHp] = useState()
     const [curHp, setCurHp] = useState()
     const [dmg, setDmg] = useState()
     const [stats, setStats] = useState([])
     const [init, setInit] = useState()
+
     const [strMod, setStrMod] = useState()
     const [dexMod, setDexMod] = useState()
     const [conMod, setConMod] = useState()
     const [intMod, setIntMod] = useState()
     const [wisMod, setWisMod] = useState()
     const [chaMod, setChaMod] = useState()
+
     const [abilityCount, setAbilityCount] = useState()
     const [dodgeOdds, setDodgeOdds] = useState()
 
@@ -25,6 +34,10 @@ export default function Combat() {
     const [pTurn, setpTurn] = useState(0)
     const [eTurn, seteTurn] = useState(0)
     const [turn, setTurn] = useState(0)
+    const [abilityCheck, setAbilityCheck] =useState(0)
+
+    const [enemy, setEnemy] = useState(0)
+    let random = (Math.floor(Math.random() * 25)+ 1)
 
 
 
@@ -38,9 +51,27 @@ export default function Combat() {
             setStats(stats.concat(statArr))
         })
     }
+    // const getAllStats = () => {
+    //     getEnemy();
+    //     calculateStats()
+    // }
+    // useEffect(() => {
+    //     fetch("api.open5e.com/monsters/?challenge_rating=0")
+    //     .then(response => response.json())
+    //     .then(json => setEnemyList(json.results))
+    //     console.log(enemyList)
+    //   }, [setHp]);
+    useLayoutEffect(() => {
+        fetch("https://api.open5e.com/monsters/?challenge_rating=0.5")
+        // fetch("https://www.dnd5eapi.co/api/monsters?challenge_rating=0.5")
+        .then(response => response.json())
+        .then(json => setEnemyList(json.results))
+    },[enemy])
     
     const calculateStats = () => {
+        
         setPrepCount(1)
+
         setStrMod(Math.floor((stats[4]['rolls'][0] - 10) / 2))
         setDexMod(Math.floor((stats[4]['rolls'][1] - 10) / 2))
         setConMod(Math.floor((stats[4]['rolls'][2] - 10) / 2))
@@ -88,6 +119,7 @@ export default function Combat() {
             setHp(Number(6 + conMod))
             setDmg(Number(3 + intMod))
         }
+       
     }
     
     const useAbiltiy = () => {
@@ -120,19 +152,34 @@ export default function Combat() {
             // passive familiar chance
         } else if (stats[2]['class'] === 'Wizard') {
             // passive stun chance
-        } console.log(dmg, hp, init)
+        } setAbilityCheck(1)
     }
 
+    const getEnemyStats = () => {
+        setEnemy(enemy + 1)
+        console.log(random)
+        console.log(enemyList)
+        setEnemyStats(enemyList[random])
+        if(typeof enemyStats !== 'object'){
+            console.log('running')
+        }
+        console.log(enemyStats)
+    }
+    
 
     const enterCombat = () => {
+
         setPrepCount(2)
-        if(turn < 1){
-        setInit(Math.floor(Math.random() * 20) + dexMod)
-        setCurHp(hp)
-        setEninit(Math.floor(Math.random() * 20) + 1)
-        setEndmg(4)
-        setEnhp(10)
-        setTurn(1)
+        if(enemy >= 1){
+            setEnName(enemyStats['name'])
+            setEnSize(enemyStats['size'])
+            setEnType(enemyStats['type'])
+            setEnhp(enemyStats['hit_points'])
+            setEndmg(Math.floor(((enemyStats['hit_points'] / 2 + 1))))
+            setInit(Math.floor(Math.random() * 20) + dexMod)
+            setCurHp(hp)
+            setEninit(Math.floor(Math.random() * 20) + 1)
+            setTurn(1)
         }
     }
 
@@ -165,40 +212,45 @@ export default function Combat() {
             <div className='RollLoad'>
                 <button className='nes-btn is-primary' onClick={calculateStats}>Calculate Stats!</button>
             </div>
-            
             <div className="nes-container with-title is-dark is-centered">
                 <p className="title">- {stats[2]['class']} Stats -</p>
                 <div className="lists">
                     <ul className="nes-list is-disc">
                         <li>{hp > 0 ? <p style={{color: 'green'}}>Max HP: {hp}</p> :<p>no stats</p>}</li>
-                        <li>{curHp > 0 ? <p style={{color: 'green'}}>Current HP: {curHp}</p> :<p>no stats</p>}</li>
+                        <li>{curHp > 0 ? <p style={{color: 'green'}}>Current HP: {curHp}</p> :<p>Current HP: no stats</p>}</li>
                         <li>{dmg > 0 ? <p style={{color: 'red'}}>Damage: 1-{dmg}</p> :<p>no stats</p>}</li>
                         {init > 0 ? <li>Initiative: {init}</li> : <p>Initiative: no stat</p>}
-                        <button className="nes-btn is-success" onClick={useAbiltiy} >Ability</button>
+                        {abilityCheck === 0 && <button className="nes-btn is-success" onClick={useAbiltiy} >Ability</button>}
                     </ul>
                 </div>
             </div>
-            {prepCount == 1 && 
-                <div className='EnterCombat'>
-                    <button className="nes-btn is-error" onClick={enterCombat}>Enter Combat!</button>
+            {prepCount == 1 && <>
+                {typeof enemyStats !== 'object' && <div className='FindEnemy'>
+                    <button className="nes-btn is-error" onClick={getEnemyStats}>Find Enemy</button>
                 </div>}
+                {typeof enemyStats === 'object' && <div className='EnterCombat'>
+                    <button className="nes-btn is-error" onClick={enterCombat}>Enter Combat!</button>
+                </div>}</>}
             {prepCount == 2 && 
                 <div className='FightCombat'>
                     <button className="nes-btn is-error" onClick={fightCombat}>Fight!</button>
                 </div>}
-            {enhp > 0 && 
+            {/* {enhp > 0 &&  */}
                 <div className="nes-container with-title is-dark is-centered">
-                    <p className="title">- Skeleton: Stats -</p>
+                    <p className="title">- {enName}: Stats -</p>
                 <div className="lists">
                     <ul className="nes-list is-disc">
+                        {enSize ? <li> Size : {enSize}</li> : <p>: no stat</p>}
+                        {enType ? <li> Type : {enType}</li> : <p>: no stat</p>}
                         <li>{enhp > 0 ? <p style={{color: 'green'}}>HP: {enhp}</p> :<p>HP: ???</p>}</li>
-                        <li>{endmg > 0 ? <p style={{color: 'red'}}>Damage: 1-{endmg}</p> :<p>Damage: ???</p>}</li>
+                        <li>{endmg ? <p style={{color: 'red'}}>Damage: 1-{endmg}</p> :<p>Damage: ???</p>}</li>
                         {eninit > 0 ? <li>Initiative: {eninit}</li> : <p>Initiative: no stat</p>}
                     </ul>
                 </div>
-            </div>}
+            </div>
+            {/* } */}
             </>} 
     </div>
   )
 
-}
+            }

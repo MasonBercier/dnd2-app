@@ -31,7 +31,6 @@ function App() {
           <Route path='/nameselect' element={<NameSelect/>}/>
           <Route path='/newcharactersheet' element={<NewCharacterSheet/>}/>
           <Route path='/combat' element={<Combat/>}/>
-
         </Routes>
       </div>
     </BrowserRouter>

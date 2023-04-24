@@ -4,7 +4,6 @@ import React from 'react'
 export default function Home() {
   // document.style.backgroundImage = `url('https://img-9gag-fun.9cache.com/photo/a8qMWeZ_700bwp.jpg')`
   return (
-    <body>
       <div className='is-dark nes-container is-centered' id='HomeIntro'>
           <h1 >Adventure Awaits!</h1>
           <p>
@@ -14,6 +13,5 @@ export default function Home() {
           <p>Create you're own Dungeons and Dragons character and try out unique battle mechanics in combat!</p>
           <p>Log in or register to start playing now!</p>
       </div>
-    </body>
   )
 }
